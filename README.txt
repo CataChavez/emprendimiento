@@ -41,3 +41,5 @@ AABBCC22
 DDEEFF33
 GGHHII44
 JJKKLL55
+
+Iniciar package.json con comando "npm i"
