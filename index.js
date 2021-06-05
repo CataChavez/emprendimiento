@@ -142,6 +142,10 @@ app.get("/Home/perfil", (req, res) => {
   });
 });
 
+/* app.get("/code", (req, res) => {
+
+}) */
+
 app.get("*", (req, res) => {
   res.render("Error");
 });

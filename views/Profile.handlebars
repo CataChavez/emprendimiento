@@ -6,28 +6,51 @@
     <h4 class=>Modificar datos personales</h4>
     <hr class="w-75 m-auto mb-2">
     <div class="w-75 m-auto">
-        <div class="input-group mb-3">
-            <span class="input-group-text d-flex justify-content-center" id="inputGroup-sizing-default"><i
-                    class="fas fa-user-circle"></i></span>
-            
-            <input type="text" class="form-control" placeholder="Ingrese su nombre completo" aria-label="Username"
-                value="" id="name" />
-            
-        </div>
+            <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-envelope"></i></span>
+        <input class="form-control" placeholder="Ingrese su correo" id="email" value="pgonzalez@gmail.com" disabled/>
+    </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text d-flex justify-content-center" id="inputGroup-sizing-default"><i
-                    class="fas fa-envelope"></i></span>
-            <input type="text" class="form-control" placeholder="Ingrese su correo" aria-label="Username"
-                value="" id="email" />
-        </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-user-circle"></i></span>
+        <input class="form-control" placeholder="Ingrese el nombre de la tienda" id="name" value="Tienda de Pedro" />
+    </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text d-flex justify-content-center" id="inputGroup-sizing-default"><i
-                    class="fas fa-portrait"></i></span>
-            <input type="text" class="form-control" placeholder="Confirme su clave" aria-label="Username"
-                value="" id="password"/>
-        </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-user-circle"></i></span>
+        <input class="form-control" placeholder="Ingrese su nombre" id="nombreVendedor" value="Pedro Gonzalez" />
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-user-circle"></i></span>
+        <input class="form-control" placeholder="Ingrese su direccion" id="direccion" value="Calle sin numero" />
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-user-circle"></i></span>
+        <input class="form-control" placeholder="Ingrese su comuna" id="comuna" value="La Florida" />
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-id-card"></i></span>
+        <input class="form-control" placeholder="Ingrese su RUT" id="rut" value="12.456.789-3" />
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-key"></i></span>
+        <input class="form-control" type="password" placeholder="Ingrese su clave" id="password" value="123456" />
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-key"></i></span>
+        <input class="form-control" type="password" placeholder="Confirme su clave" id="passwordConfirm"
+            value="123456" />
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text d-flex justify-content-center"><i class="fas fa-user-circle"></i></span>
+        <input class="form-control" type="url" placeholder="URL imagen tienda" id="imagen" value="https://crearpaginaweb.org/wp-content/uploads/2016/01/pagina-web-de-cocina-recetas.jpg" />
+    </div>
     </div>
 
     <button type="button" class="btn btn-dark" onclick="updateProfile()">Modificar</button>
@@ -36,24 +59,43 @@
 </div>
 
 <script>
+
     
     const updateProfile = async () => {
         const id = "{{user.id}}"
-        const name = document.getElementById("name").value
-        const email = document.getElementById("email").value
+        const nombreTienda = document.getElementById("name").value
+        const nombreVendedor = document.getElementById("nombreVendedor").value
+        const direccion = document.getElementById("direccion").value
+        const comuna = document.getElementById("comuna").value
+        const rut = document.getElementById("rut").value
         const password = document.getElementById("password").value
-        const payload = { name, email, password }
-        try {
-            await axios.put(`/usuario/${id}`, payload)
-            alert(`Datos modificados con éxito!`)
-            location.reload();
-        } catch (e) {
-            const { response } = e
-            const { data } = response
-            const { message } = data
-            console.log(data)
-            const { code, detail } = message
-            alert(`Error SQL código ${code} ${detail}`)
+        const passwordConfirm = document.getElementById("passwordConfirm").value
+        const imagen = document.getElementById("imagen").value
+
+
+        const expRUT = /^(\d{1,2}\.\d{3}\.\d{3}-)([kK]{1}$|\d{1}$)/
+        const expEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+
+        if (password !== passwordConfirm) {
+            alert("Las contraseñas deben ser iguales")
+        }
+        else if (!expRUT.test(rut)) {
+            alert("El RUT ingresado no cumple con el siguiente formato: 12.456.789-3")
+        }
+        else {
+            const payload = { nombreTienda, nombreVendedor, direccion, comuna, rut, password, imagen }
+            try {
+                await axios.put(`/tiendas/${id}`, payload)
+                alert(`Datos modificados con éxito!`)
+                location.reload();
+            } catch (e) {
+                const { response } = e
+                const { data } = response
+                const { message } = data
+                console.log(data)
+                const { code, detail } = message
+                alert(`Error SQL código ${code} ${detail}`)
+            }
         }
     }
 </script>

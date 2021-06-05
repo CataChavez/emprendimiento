@@ -41,7 +41,7 @@ return result.rowCount;
 
 const updateUser = async (datos, id) => {
   const result = await pool.query(
-    `UPDATE tiendas SET name = $1, email = $2, password = $3 WHERE id = ${id} RETURNING *`,
+    `UPDATE tiendas SET nombre_tienda = $1, nombre_emprendedor = $2, direccion = $3, comuna = $4, rut = $5, password = $6, imagen = $7 WHERE id = ${id} RETURNING *`,
     datos
   );
   return result.rows[0];
