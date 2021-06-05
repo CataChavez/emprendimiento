@@ -1,0 +1,28 @@
+{{> Navbar}}
+
+<div class="col-12 col-sm-9 text-center px-3 p-sm-5">
+
+    {{#each tienda}}
+    <h3>Tienda de {{this.nombre_tienda}}</h3>
+    {{/each}}
+
+    <div class="card-group">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+    {{#each productos}}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.nombre}}</h5>
+                    <p class="card-text">{{this.descripcion}}</p>                    
+                    <div class="card-footer">{{this.precio}}</div>
+                </div>
+            </div>
+    {{/each}}
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+</script>
+        

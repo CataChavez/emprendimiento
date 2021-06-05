@@ -69,6 +69,13 @@ const newProduct = async(datos, id) => {
   return result.rows[0];  
 }
 
+const getProducts = async(tienda, id) => {
+  const result = await pool.query(
+    `SELECT * FROM productos WHERE tienda_id=${id}`
+  )
+  return result.rows
+}
+
 module.exports = {
   login,
   newUser,
@@ -76,5 +83,6 @@ module.exports = {
   updateUser,
   getTiendas,
   getTiendasDesc,
-  newProduct
+  newProduct,
+  getProducts
 };

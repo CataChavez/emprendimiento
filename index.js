@@ -166,6 +166,34 @@ app.put("/productos/:id", async (req, res) => {
   }
 })
 
+app.get("/Home/tienda", (req, res) => {
+  const { token } = req.query;
+  const tienda = req.query;
+  jwt.verify(token, process.env.SECRET_KEY, async (error, data) => {
+    if (error) {
+      const { message } = error;
+      res.status(401).send({ error: "401 Unauthorized", message});
+    }else {
+      let productos;
+      try {
+        const { id } = data;
+        productos = await db.getProducts(tienda, id)
+        res.render("Tienda", {
+          user: data,
+          productos,
+          tienda,
+          token
+        });
+      } catch (e) {
+        console.log(e);
+        res
+          .status(500)
+          .send({ error: "500 Internal Server Error", message: e });
+      }
+    }
+  })
+})
+
 /* app.get("/code", (req, res) => {
 
 }) */

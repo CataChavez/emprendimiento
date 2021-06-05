@@ -29,7 +29,9 @@
                                 <img src="{{this.imagen}}" class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">{{this.nombre_tienda}}</h5>
+                                    <button type="button" class="btn btn-dark" onclick="irTienda()">Ir a la tienda</button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -40,8 +42,6 @@
     </div>
 
 <script>
-
-
+    const irTienda = () => window.location = `/Home/tienda?token=${token}`
 </script>
-
 

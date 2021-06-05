@@ -25,10 +25,10 @@
 </nav>
 <script>
     const token = "{{token}}"
-    //ir agregando las paginas a las que debe ir el navbar
+  
     const home = () => window.location = `/Home?token=${token}`
     const update = () => window.location = `/Home/perfil?token=${token}`
-    const productos = () => window.location = `/Home/productos?token=${token}`
+    const agregarProducto = () => window.location = `/Home/productos?token=${token}`
 
     const deleteUser = async () => {
        const id = "{{user.id}}"
