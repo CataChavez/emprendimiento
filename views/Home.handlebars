@@ -22,25 +22,25 @@
 
                 <div class="col-8">
                     <h3>Tiendas</h3>
+                    {{#each tiendas}}
                     <div class="card-group">
                         <div class="row row-cols-1 row-cols-md-3 g-4">
-                            {{#each tiendas}}
                             <div class="card">
                                 <img src="{{this.imagen}}" class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">{{this.nombre_tienda}}</h5>
                                 </div>
-                            {{/each}}
                             </div>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
             </div>
 
     </div>
 
 <script>
-    
+
 
 </script>
 

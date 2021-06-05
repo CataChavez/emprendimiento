@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
     res.render("Login")
 })
 
-//Login rout
+//Login route
 app.post("/login", async (req, res) => {
   const credentials = Object.values(req.body);
   console.log(credentials);
@@ -141,6 +141,30 @@ app.get("/Home/perfil", (req, res) => {
     }
   });
 });
+
+app.get("/Home/productos", (req, res) => {
+  const { token } = req.query;
+  jwt.verify(token, process.env.SECRET_KEY, (err, data) => {
+    if (err) {
+      const { message } = err;
+      res.status(401).send({ error: "401 Unauthorized", message });
+    } else {
+      res.render("Product", { user: data, token });
+    }
+  });
+})
+
+app.put("/productos/:id", async (req, res) => {
+  const { id } = req.params;
+  const datos = Object.values(req.body);
+  try {
+    const result = await db.newProduct(datos, id);
+    res.status(201).send(result);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send({ error: "500 Internal Server Error", message: e });
+  }
+})
 
 /* app.get("/code", (req, res) => {
 

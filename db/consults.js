@@ -61,11 +61,20 @@ const getTiendasDesc = async() => {
   return result.rows
 }
 
+const newProduct = async(datos, id) => {
+  const result = await pool.query(
+    `INSERT INTO productos (nombre, descripcion, precio, tienda_id) values ($1, $2, $3, ${id}) RETURNING *`,
+    datos
+  );
+  return result.rows[0];  
+}
+
 module.exports = {
   login,
   newUser,
   deleteUser,
   updateUser,
   getTiendas,
-  getTiendasDesc
+  getTiendasDesc,
+  newProduct
 };

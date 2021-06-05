@@ -14,6 +14,9 @@
           <a href="#" onclick="update()">Modificar datos</a>
         </li>
         <li class="nav-item">
+          <a href="#" onclick="agregarProducto()">Agregar Productos</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/">Salir</a>
         </li>
       </ul>
@@ -25,6 +28,7 @@
     //ir agregando las paginas a las que debe ir el navbar
     const home = () => window.location = `/Home?token=${token}`
     const update = () => window.location = `/Home/perfil?token=${token}`
+    const productos = () => window.location = `/Home/productos?token=${token}`
 
     const deleteUser = async () => {
        const id = "{{user.id}}"

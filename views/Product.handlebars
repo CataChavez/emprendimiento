@@ -1,0 +1,45 @@
+{{> Navbar}}
+
+<div class="px-5 py-3 m-auto card text-center wrapper">
+    <h4>Mi Emprendimiento</h4>
+    <small class="mb-2">Ingresar un nuevo Producto</small>
+
+    <div class="input-group mb-3"> 
+        <input type="text" class="form-control" placeholder="Ingrese nuevo Producto" id="nombreProducto" value=""/>
+    </div>
+
+    <div class="input-group mb-3"> 
+        <input type="text" class="form-control" placeholder="Agregue una descripción" id="descripcionProducto" value=""/>
+    </div>
+
+    <div class="input-group mb-3"> 
+        <input type="number" class="form-control" placeholder="Precio $" id="precio" value=""/>
+    </div>
+
+    <button type="button" class="btn btn-light w-50 m-auto" data-mdb-ripple-color="dark" onclick="agregarProducto()">Agregar Producto</button>
+
+</div>
+<script>
+        const agregarProducto = async () => {
+            const id = "{{user.id}}"
+            const nombreProducto = document.getElementById("nombreProducto").value
+            const descripcionProducto = document.getElementById("descripcionProducto").value
+            const precio = document.getElementById("precio").value
+            const payload = { nombreProducto, descripcionProducto, precio }
+            console.log(payload)
+                try {
+                    await axios.put(`/productos/${id}`, payload)
+                    alert(`Producto ingresado con éxito!`)
+                    location.reload();
+                } catch (e) {
+                    const { response } = e
+                    const { data } = response
+                    const { message } = data
+                    console.log(data)
+                    const { code, detail } = message
+                    alert(`Error SQL código ${code} ${detail}`)
+                }
+            }
+    
+
+</script>
