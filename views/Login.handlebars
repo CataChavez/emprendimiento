@@ -1,0 +1,38 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<div class="px-5 py-3 m-auto card text-center wrapper">
+    <h4>Mi Emprendimiento</h4>
+    <small class="mb-2">Bienvenid@</small>
+
+    <div class="input-group mb-3"> 
+        <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-id-card"></i></span>
+        <input type="email" class="form-control" placeholder="Ingrese su correo" id="email" value="pgonzalez@gmail.com"/>
+    </div>
+
+    <div class="input-group mb-3"> 
+        <span class="input-group-text d-flex justify-content-center" id="inputGroup-sizing-default"><i class="fas fa-key"></i></span>
+        <input type="password" class="form-control" placeholder="Ingrese su clave" id="password" value="123456"/>
+    </div>
+
+    <button type="button" class="btn btn-light w-50 m-auto" data-mdb-ripple-color="dark" onclick="login()">Ingresar</button>
+     <a href="/registro" class="mt-2">Registrarme</a>
+
+</div>
+
+ <script>
+
+    const login = async () => {
+        const email = document.getElementById("email").value
+        const password = document.getElementById("password").value
+        const payload = { email, password }
+        try {
+            const { data: token } = await axios.post("/login", payload)
+            window.location = `/Home?token=${token}`
+        } catch (e) {
+            const { response } = e
+            const { data: message } = response
+            alert(message)
+        }
+    }   
+
+</script>

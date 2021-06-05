@@ -1,0 +1,11 @@
+body{
+    background: #cecbc8;
+}
+
+.input-group-text{
+    width: 55px;
+}
+
+.opcion{
+    cursor: pointer;
+}

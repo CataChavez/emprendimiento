@@ -1,0 +1,45 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-align-left">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Hola {{user.name}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" onclick="home()">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" onclick="update()">Modificar datos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Salir</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<script>
+    const token = "{{token}}"
+    //ir agregando las paginas a las que debe ir el navbar
+    const home = () => window.location = `/Home?token=${token}`
+    const update = () => window.location = `/Home/perfil?token=${token}`
+
+    const deleteUser = async () => {
+       const id = "{{user.id}}"
+        try {
+            await axios.delete(`/tiendas/${id}`)
+            alert("Usuario eliminado de la base de datos")
+            window.location = `/`
+        } catch (e) {
+            const { response } = e
+            const { data: message } = response
+            alert(message)
+        }
+    }
+
+
+
+</script>
+

@@ -1,0 +1,44 @@
+{{>Navbar}}
+
+    <div class="container">
+        <div class="row">
+                <div class="col-4">
+                    <h3>Ordenar/Filtrar</h3>
+                    <div class="d-inline">
+                        <input type="text" class="">
+                        <button type="button" class="btn btn-dark" onclick="buscar()">Buscar</button>
+                    </div>
+                    <div class="align-center">
+                        <a href="/" class="mt-2">Ordenar de A a Z</a>
+                    </div>
+                    <div>
+                        <a href="/" class="mt-2">Ordenar de Z a A</a>
+                    </div>
+
+                </div>
+
+                <div class="col-8">
+                    <h3>Tiendas</h3>
+                    <div class="card-group">
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            {{#each tiendas}}
+                            <div class="card">
+                                <img src="{{this.imagen}}" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{this.nombre_tienda}}</h5>
+                                </div>
+                            {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+<script>
+
+
+</script>
+
+
