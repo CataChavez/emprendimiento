@@ -42,4 +42,5 @@ DDEEFF33
 GGHHII44
 JJKKLL55
 
+Funciona en puerto local: http://localhost:3000/
 Iniciar package.json con comando "npm i"
