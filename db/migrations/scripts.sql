@@ -35,9 +35,3 @@ CREATE TABLE ganadores(
     codigo VARCHAR (45)
 );
 
-INSERT INTO usuarios (email, nombre_tienda, nombre nombre_emprendedor, direccion, comuna, rut, password, imagen) VALUES ('', 'atapia@gmail.com', 123456);
-/* la tabla tiene 2 usuarios: 
-    1)name: andrea tapia, atapia@gmail.com, password: 123456 y
-    2)name: juan perez, jperez@gmail.com, password: 123456.
-
- FOREIGN KEY (ganadores_id) REFERENCES ganador_id (id)
